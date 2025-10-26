@@ -1,20 +1,45 @@
 <!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <title>Đăng ký</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="form-container">
-    <h2>Đăng ký tài khoản</h2>
-    <input type="text" id="name" placeholder="Họ và tên" required>
-    <input type="email" id="email" placeholder="Email" required>
-    <input type="password" id="password" placeholder="Mật khẩu" required>
-    <button id="registerBtn">Đăng ký</button>
-    <p>Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
-  </div>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="../account.css" />
+  </head>
 
-  <script src="auth.js"></script>
-</body>
+  <body>
+    <div class="account-box" id="register">
+      <h2>Register</h2>
+      <form>
+        <div class="user-box">
+          <input id="email" type="text" name="" placeholder="Email" />
+        </div>
+        <div class="user-box">
+          <input
+            id="numberPhone"
+            type="number"
+            name=""
+            placeholder="So dien thoai"
+          />
+        </div>
+        <div class="user-box">
+          <input id="password" type="password" name="" placeholder="Password" />
+        </div>
+        <div class="user-box">
+          <input
+            id="re_password"
+            type="password"
+            name=""
+            placeholder="Nhap lai Password"
+          />
+        </div>
+        <div class="selector">
+          <a class="account" href="../login/login.html">Bạn đã có tài khoản?</a>
+          <button onclick="Register()" type="submit" class="btn">Submit</button>
+        </div>
+      </form>
+    </div>
+    <script src="auth.js"></script>
+  </body>
 </html>

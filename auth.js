@@ -1,67 +1,75 @@
-const registerBtn = document.querySelector("#registerBtn");
-if (registerBtn) {
-  registerBtn.addEventListener("click", () => {
-    const name = document.querySelector("#name").value.trim();
-    const email = document.querySelector("#email").value.trim();
-    const password = document.querySelector("#password").value.trim();
+function Register() {
+  event.preventDefault();
 
-    if (!name || !email || !password) {
-      alert("Vui lòng nhập đầy đủ thông tin!");
-      return;
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("numberPhone").value;
+  const pass = document.getElementById("password").value;
+  const re_pass = document.getElementById("re_password").value;
+  let acc = JSON.parse(localStorage.getItem("username")) || [];
+  const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  const passRegex =
+    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+  const numberRegex = /[0-9]/g;
+
+  function Validate() {
+    let isVal = true;
+    if (email === "") {
+      alert("Chưa nhập email!!!");
+      return (isVal = false);
     }
 
-
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-
-    const exists = users.find((u) => u.email === email);
-    if (exists) {
-      alert("Email này đã được đăng ký!");
-      return;
+    if (!emailRegex.test(email)) {
+      alert("Email ko đúng định dạng!!");
+      return (isVal = false);
+    }
+    if (phone === "") {
+      alert("Chưa nhập số điện thoại!!!");
+      return (isVal = false);
     }
 
-    users.push({ name, email, password });
-    localStorage.setItem("users", JSON.stringify(users));
+    if (!numberRegex.test(phone)) {
+      alert("Số điện thoại không đúng đinh dạnh!!!");
+      return (isVal = false);
+    }
 
-    alert("Đăng ký thành công! Mời bạn đăng nhập.");
-    window.location.href = "login.html";
-  });
-}
+    if (pass === "") {
+      alert("Chưa nhập mật khẩu!!!");
+      return (isVal = false);
+    }
 
-const loginBtn = document.querySelector("#loginBtn");
-if (loginBtn) {
-  loginBtn.addEventListener("click", () => {
-    const email = document.querySelector("#loginEmail").value.trim();
-    const password = document.querySelector("#loginPassword").value.trim();
+    if (!passRegex.test(pass)) {
+      alert(
+        "Mật khẩu phải có ký tự viết hoa, viết thường, số và ký tự đặc biệt"
+      );
+      return (isVal = false);
+    }
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const user = users.find(
-      (u) => u.email === email && u.password === password
-    );
+    if (re_pass !== pass) {
+      alert("Mật khẩu không khớp!!!");
+      return (isVal = false);
+    }
+    return isVal;
+  }
 
-    if (user) {
-      localStorage.setItem("currentUser", JSON.stringify(user));
-      alert("Đăng nhập thành công!");
-      window.location.href = "index.html";
+  if (Validate()) {
+    let search;
+    for (let i in acc) {
+      if (acc[i].email === email) {
+        search = acc[i].email;
+      }
+    }
+
+    if (search) {
+      alert("Email này đã được đăng ký vui lòng dùng email khác!!!");
     } else {
-      alert("Sai email hoặc mật khẩu!");
+      acc.push({
+        email: email,
+        phoneNumber: phone,
+        password: pass,
+      });
+      localStorage.setItem("username", JSON.stringify(acc));
+      alert("Đăng ký thành công!!!");
+      window.location = "../login.html";
     }
-  });
-}
-
-
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-const welcomeEl = document.querySelector("#welcome");
-if (welcomeEl && currentUser) {
-  welcomeEl.textContent = `Xin chào, ${currentUser.name}!`;
-} else if (welcomeEl && !currentUser) {
-
-  window.location.href = "login.html";
-}
-
-const logoutBtn = document.querySelector("#logoutBtn");
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", () => {
-    localStorage.removeItem("currentUser");
-    window.location.href = "login.html";
-  });
+  }
 }

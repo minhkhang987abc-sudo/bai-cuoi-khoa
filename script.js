@@ -33,7 +33,7 @@ async function getData(query = "tesla") {
           <img src="${article.urlToImage}" alt="">
           <h3>${article.title}</h3>
           <p>${article.description || "Không có mô tả"}</p>
-          <small>🕒 ${formattedDate} | 📰 ${article.source.name}</small>
+          <small>${formattedDate} | ${article.source.name}</small>
         </a>`;
     }
   } catch (error) {

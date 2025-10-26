@@ -1,0 +1,100 @@
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f5f7fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.account-box {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 360px;
+  padding: 40px 35px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.account-box:hover {
+  transform: translateY(-4px);
+}
+
+.account-box h2 {
+  margin-bottom: 25px;
+  color: #007bff;
+  font-size: 26px;
+}
+
+.user-box {
+  margin-bottom: 18px;
+}
+
+.user-box input {
+  width: 75%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 15px;
+  transition: border-color 0.2s ease;
+}
+
+.user-box input:focus {
+  border-color: #007bff;
+}
+
+s.selector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.selector .account {
+  font-size: 13.5px;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.selector .account:hover {
+  color: #005ec9;
+}
+
+.btn {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  padding: 9px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn:hover {
+  background-color: #005ec9;
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+#notifi {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+  min-height: 16px;
+}
+
+@media (max-width: 480px) {
+  .account-box {
+    width: 90%;
+    padding: 30px 20px;
+  }
+}
